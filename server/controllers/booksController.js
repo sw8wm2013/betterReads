@@ -49,14 +49,16 @@ booksController.addBookByTitle = (req, res, next) => {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle${title}&key=${googleBooksAPI.key}`)
     .then(response => response.json())
     .then((data) => {
+        // console.log(data.items)
         res.locals.allTheData = data.items;
+        console.log(res.locals.allTheData)
     })
     .catch (e => next({
         log: `There was an issue in the booksContoller.addBookByAuthor: ERROR: ${typeof e === 'object' ? JSON.stringify(e) : e}`,
         message: {err: 'That bookController is causing me problems AGAIN'}
     }));
 
-    console.log(res.locals.allTheData)
+    // console.log(res.locals.allTheData)
 
     // function createBooks (booksData) {
     //     let bookResults = [];
